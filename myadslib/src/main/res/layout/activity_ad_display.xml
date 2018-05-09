@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fbfeff"
+    tools:context="com.example.ferran.myadslib.volley.AdDisplay">
+
+    <ImageView
+        android:id="@+id/cross"
+        android:layout_width="25dp"
+        android:layout_margin="20dp"
+        android:alpha="0.5"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/cross" />
+
+
+    <LinearLayout
+        android:id="@+id/adclick"
+        android:layout_width="match_parent"
+        android:layout_below="@id/cross"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <ImageView
+            android:id="@+id/adimage"
+            android:layout_width="270dp"
+            android:layout_height="270dp"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <TextView
+            android:id="@+id/adname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:textColor="#006fff"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/addescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:textColor="#696969"
+         android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+
+            android:layout_marginTop="10dp"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/btninstall"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+        android:layout_marginRight="40dp"
+            android:textColor="#fff"
+
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="40dp"
+         android:layout_marginTop="30dp"
+            android:background="@drawable/layout_bg"
+            android:text="@string/install" />
+
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

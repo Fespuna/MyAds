@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ferran.myadslib">
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <application>
+
+
+        <activity android:name=".volley.AdDisplay"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            ></activity>
+
+    </application>
+
+</manifest>
