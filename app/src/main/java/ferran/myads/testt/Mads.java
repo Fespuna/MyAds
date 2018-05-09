@@ -15,7 +15,7 @@ public class Mads extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mads);
 
-
+// modificacio
        Button btn = (Button)findViewById(R.id.button);
 
        btn.setOnClickListener(new View.OnClickListener() {
