@@ -1,6 +1,8 @@
 package com.example.ferran.myadslib.volley;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,11 +10,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +19,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.ferran.myadslib.R;
+
+import java.util.Calendar;
 
 public class AdDisplay extends Activity {
 
@@ -31,30 +32,61 @@ public class AdDisplay extends Activity {
         setContentView(R.layout.activity_ad_display);
 
         Intent intent = getIntent();
-        final String adpackagei = intent.getStringExtra("adpackage");
-        final String adnamei = intent.getStringExtra("adname");
-        final String addescriptioni = intent.getStringExtra("addescription");
-        final String adimagei = intent.getStringExtra("adimage");
+        final String adname = intent.getStringExtra("ad_name");
+        final String adpackage = intent.getStringExtra("ad_package");
+        final String adicon = intent.getStringExtra("ad_icon");
+        final String addescription = intent.getStringExtra("ad_description");
+        final String apppackage = intent.getStringExtra("app_package");
 
 
-        TextView adname = (TextView)findViewById(R.id.adname);
-        TextView addescription = (TextView)findViewById(R.id.addescription);
+        TextView aadname = (TextView)findViewById(R.id.adname);
+        TextView aaddescription = (TextView)findViewById(R.id.addescription);
         final ImageView adimage = (ImageView)findViewById(R.id.adimage);
         ImageView cross = (ImageView)findViewById(R.id.cross);
         LinearLayout adclick = (LinearLayout)findViewById(R.id.adclick);
 
-        adname.setText(adnamei);
-        addescription.setText(addescriptioni);
+        aadname.setText(adname);
+        aaddescription.setText(addescription);
 
-        Button btninstall = (Button)findViewById(R.id.btninstall);
-        btninstall.setOnClickListener(new View.OnClickListener() {
+        DataUpdates.UpdateImpressions(AdDisplay.this);
+
+       adclick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gomarkt(adpackagei);
+
+                Log.e("xi","txd");
+
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.SECOND, 300);
+
+                //Create a new PendingIntent and add it to the AlarmManager
+                Intent intent = new Intent(getApplicationContext(), ReceiveInstall.class);
+
+                //  intent.putExtra(TelephonyManager.EXTRA_STATE, "AQUI AGREGA EL VALOR");
+                intent.putExtra("packa",adpackage);
+                intent.putExtra("apppacka",apppackage);
+
+
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),331,intent,PendingIntent.FLAG_CANCEL_CURRENT);
+
+                //   PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
+                //     12345, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                AlarmManager am = (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
+                am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
+                        pendingIntent);
+
+
+
+                DataUpdates.UpdateClicks(AdDisplay.this);
+                gomarkt(adpackage);
+
             }
         });
 
-        Glide.with(this).load(Urls.URL_AD_IMAGE + adimagei).asBitmap().centerCrop().into(new BitmapImageViewTarget(adimage) {
+
+        Glide.with(this).load(Urls.URL_AD_IMAGE + adicon).asBitmap().centerCrop().into(new BitmapImageViewTarget(adimage) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
@@ -66,12 +98,6 @@ public class AdDisplay extends Activity {
         });
 
 
-        adclick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             gomarkt(adpackagei);
-            }
-        });
 
 
         cross.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +118,7 @@ public class AdDisplay extends Activity {
         goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
                 Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
                 Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        finish();
+       // finish();
         try {
             startActivity(goToMarket);
             finish();

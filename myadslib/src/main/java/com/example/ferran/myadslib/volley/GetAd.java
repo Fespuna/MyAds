@@ -1,5 +1,6 @@
 package com.example.ferran.myadslib.volley;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
@@ -12,15 +13,57 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 /**
  * Created by Ferran on 17/03/2017.
  */
 public class GetAd {
 
+
+
+
     public static void Show(final Activity act) {
+
+        try {
+            TrustManager[] trustAllCerts = new TrustManager[] {
+                    new X509TrustManager() {
+                        public X509Certificate[] getAcceptedIssuers() {
+                            X509Certificate[] myTrustedAnchors = new X509Certificate[0];
+                            return myTrustedAnchors;
+                        }
+
+                        @Override
+                        public void checkClientTrusted(X509Certificate[] certs, String authType) {}
+
+                        @Override
+                        public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+                    }
+            };
+
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String arg0, SSLSession arg1) {
+                    return true;
+                }
+            });
+        } catch (Exception e) {
+        }
+
+
 
         Log.e("sperads","entra");
 
@@ -46,17 +89,13 @@ public class GetAd {
                             try {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                Log.e("sperads",jsonObject.getString("ad_package"));
-                                Log.e("sperads",jsonObject.getString("ad_image"));
-                                Log.e("sperads",jsonObject.getString("ad_name"));
-                                Log.e("sperads",jsonObject.getString("ad_description"));
-
-
                                 Intent myIntent = new Intent(act, AdDisplay.class);
-                                myIntent.putExtra("adpackage", jsonObject.getString("ad_package")); //Optional parameters
-                                myIntent.putExtra("adimage", jsonObject.getString("ad_image")); //Optional parameters
-                                myIntent.putExtra("adname", jsonObject.getString("ad_name")); //Optional parameters
-                                myIntent.putExtra("addescription", jsonObject.getString("ad_description")); //Optional parameters
+                                myIntent.putExtra("ad_name", jsonObject.getString("ad_name")); //Optional parameters
+                                myIntent.putExtra("ad_package", jsonObject.getString("ad_package")); //Optional parameters
+                                myIntent.putExtra("ad_icon", jsonObject.getString("ad_icon")); //Optional parameters
+                                myIntent.putExtra("ad_description", jsonObject.getString("ad_description")); //Optional parameters
+                                myIntent.putExtra("app_package", jsonObject.getString("app_package")); //Optional parameters
+
                                act.startActivity(myIntent);
 
                             } catch (JSONException e) {

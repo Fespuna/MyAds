@@ -11,6 +11,11 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             ></activity>
 
+
+        <receiver android:name=".volley.ReceiveInstall" >
+        </receiver>
+
+
     </application>
 
 </manifest>
