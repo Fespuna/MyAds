@@ -3,7 +3,7 @@
 This is a "private" project so will not work for you at all
 ------------------
 
-
+*At the project build.gradle file*
 
 ```
 allprojects {
@@ -14,6 +14,8 @@ allprojects {
 		}
 	}
 ```
+
+*At the inner build.gradle file*
 
 ```
   dependencies {
