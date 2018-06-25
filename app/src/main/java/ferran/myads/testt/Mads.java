@@ -14,20 +14,25 @@ public class Mads extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mads);
 
+        //Load the ad
         MyAds.Load(this);
 
-        Button btn = (Button)findViewById(R.id.button);
 
-       btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
+        Button btn = (Button) findViewById(R.id.button);
 
-               MyAds.ShowInterstitial(Mads.this);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-           }
-       });
+                //Show the ad
+                MyAds.ShowInterstitial(Mads.this);
 
-    //    MyAds.LoadAndShowSplash(this);
+            }
+        });
+
+
+        // Load and show the ad at the same time
+        // MyAds.LoadAndShowSplash(this);
 
 
     }
