@@ -27,7 +27,7 @@ How it works?
 1) Load the ad
 ```
    MyAds.Load(this);
-   ```
+```
 2) Call the ad
 ```
 
@@ -41,8 +41,7 @@ How it works?
 
             }
      });
-     ```
-   
+```
         
 3) You also can call this method to call and show at the same time.
 ```
