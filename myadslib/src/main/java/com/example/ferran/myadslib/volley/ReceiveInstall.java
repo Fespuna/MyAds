@@ -36,6 +36,9 @@ public class ReceiveInstall extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        Log.e("xixi","bbbb");
+
+
         String packag = intent.getStringExtra("packa");
         String apppacka = intent.getStringExtra("apppacka");
 
@@ -55,7 +58,7 @@ public class ReceiveInstall extends BroadcastReceiver {
 
                Log.e("xi", "suma inst");
 
-                try {
+              /*  try {
                     Log.e("xi","xipirona");
                     TrustManager[] trustAllCerts = new TrustManager[] {
                             new X509TrustManager() {
@@ -83,7 +86,7 @@ public class ReceiveInstall extends BroadcastReceiver {
                     });
                 } catch (Exception e) {
                     Log.e("xi","xipironb");
-                }
+                }*/
 
                 Map<String, String> params = new HashMap<>();
                 params.put("package",apppacka );
@@ -100,8 +103,17 @@ public class ReceiveInstall extends BroadcastReceiver {
                     public void onErrorResponse(VolleyError error) {
                         Log.e("xi","b");
                         Log.e("xi",error.toString());
+
                     }
                 });
+
+
+        /*        PackageManager pm  = Re_editActivity.this.getPackageManager();
+                ComponentName componentName = new ComponentName(currentActivity.this, name_of_your_receiver.class);
+                pm.setComponentEnabledSetting(componentName,PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);*/
+
+
 
 
             }

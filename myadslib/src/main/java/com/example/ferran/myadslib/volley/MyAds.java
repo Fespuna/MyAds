@@ -20,15 +20,23 @@ import javax.net.ssl.X509TrustManager;
 public class MyAds {
 
 
+    public static void Load(Activity act){
 
-    public static void Show(Activity act){
+        GetAd.Load(act);
+     //   GetAd.Show(act);
+    }
+
+    public static void ShowInterstitial(Activity act){
 
         GetAd.Show(act);
     }
 
-    public static void ShowBanner(Activity act){
 
-      //  GetAd.Show(act);
+    public static void LoadAndShowSplash(Activity act){
+
+        GetAd.LoadAndShow(act);
     }
+
+
 
 }

@@ -12,8 +12,17 @@
             ></activity>
 
 
-        <receiver android:name=".volley.ReceiveInstall" >
+       <receiver android:name=".volley.ReceiveInstall" >
         </receiver>
+
+      <!--  <receiver
+            android:name=".volley.ReceiveInstall"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name=".volley.ReceiveInstall" />
+            </intent-filter>
+        </receiver>-->
 
 
     </application>

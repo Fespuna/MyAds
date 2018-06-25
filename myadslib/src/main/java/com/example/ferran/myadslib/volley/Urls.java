@@ -6,16 +6,16 @@ package com.example.ferran.myadslib.volley;
 
 public class Urls {
 
-    public static final String GET_AD = "https://www.beetalkweb.com:8443/getthead";
+    public static final String GET_AD = "http://www.beetalkweb.com:8085/getthead";
 
-    public static final String URL_AD_IMAGE = "https://www.beetalkweb.com/myads/imagesb/";
-
-
-    public static final String UPDATEIMPRESSION = "https://www.beetalkweb.com:8443/updateimpressions";
+    public static final String URL_AD_IMAGE = "http://www.beetalkweb.com/myads/imagesb/";
 
 
-    public static final String UPDATECLICKS = "https://www.beetalkweb.com:8443/updateclicks";
-    public static final String UPDATEINSTALLS = "https://www.beetalkweb.com:8443/updateinstalls";
+    public static final String UPDATEIMPRESSION = "http://www.beetalkweb.com:8085/updateimpressions";
+
+
+    public static final String UPDATECLICKS = "http://www.beetalkweb.com:8085/updateclicks";
+    public static final String UPDATEINSTALLS = "http://www.beetalkweb.com:8085/updateinstalls";
 
 }
 

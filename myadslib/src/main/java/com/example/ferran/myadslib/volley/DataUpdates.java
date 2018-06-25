@@ -27,10 +27,9 @@ public class DataUpdates {
 
     public static void UpdateImpressions(final Activity act) {
 
+        Log.e("xixixi","entra a update impressions");
 
-        Log.e("xi","crea imp");
-
-        try {
+      /*  try {
             TrustManager[] trustAllCerts = new TrustManager[] {
                     new X509TrustManager() {
                         public X509Certificate[] getAcceptedIssuers() {
@@ -57,7 +56,7 @@ public class DataUpdates {
             });
         } catch (Exception e) {
 
-        }
+        }*/
 
         Map<String, String> params = new HashMap<>();
 
@@ -69,12 +68,17 @@ public class DataUpdates {
             @Override
             public void onResponse(String response) {
 
+                Log.e("xixixi","tot va be");
+
                 Log.e("sumimp",response);
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                Log.e("xixixi","dona error");
+
 
                 Log.e("sumimp",error.toString());
             }
@@ -85,7 +89,7 @@ public class DataUpdates {
 
     public static void UpdateClicks(final Activity act) {
 
-        try {
+    /*    try {
             TrustManager[] trustAllCerts = new TrustManager[] {
                     new X509TrustManager() {
                         public X509Certificate[] getAcceptedIssuers() {
@@ -112,7 +116,7 @@ public class DataUpdates {
             });
         } catch (Exception e) {
 
-        }
+        }*/
 
         Map<String, String> params = new HashMap<>();
 

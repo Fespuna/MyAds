@@ -63,8 +63,8 @@ public class HttpsTrustManager implements X509TrustManager {
         /*if (Config.DEBUG) {
             System.out.println("CERT CLIENT: " + Arrays.toString(certificates) + " AUTH TYPE: " + authType);
         }**/
-      //  allowAllSSL();
-       x509TrustManager.checkClientTrusted(certificates, authType);
+
+        x509TrustManager.checkClientTrusted(certificates, authType);
     }
 
     @Override
@@ -72,8 +72,6 @@ public class HttpsTrustManager implements X509TrustManager {
         /*if (Config.DEBUG) {
             System.out.println("CERT SERVER: " + Arrays.toString(certificates) + " AUTH TYPE: " + authType);
         }**/
-
-     //   allowAllSSL();
 
         try {
             certificates[0].checkValidity();
@@ -87,33 +85,4 @@ public class HttpsTrustManager implements X509TrustManager {
     public X509Certificate[] getAcceptedIssuers() {
         return x509TrustManager.getAcceptedIssuers();
     }
-
-
-  /*  public static void allowAllSSL() {
-        HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-
-            @Override
-            public boolean verify(String arg0, SSLSession arg1) {
-                return true;
-            }
-
-        });
-
-        SSLContext context = null;
-        if (trustManagers == null) {
-            trustManagers = new TrustManager[]{new HttpsTrustManager()};
-        }
-
-        try {
-            context = SSLContext.getInstance("TLS");
-            context.init(null, trustManagers, new SecureRandom());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }
-
-        HttpsURLConnection.setDefaultSSLSocketFactory(context
-                .getSocketFactory());
-    }*/
 }
