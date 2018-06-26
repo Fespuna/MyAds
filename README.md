@@ -20,8 +20,9 @@ allprojects {
 ```
   dependencies {
   
-	        implementation 'com.github.Fespuna:AndroidEasyRate:2.0'
-	}
+	        implementation 'com.github.Fespuna:MyAds:3.0'
+		
+		}
 ```
 
 How it works?
